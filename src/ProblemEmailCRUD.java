@@ -52,12 +52,14 @@ public class ProblemEmailCRUD extends EmailCRUD{
     }
 
     @Override
-    public void display() {
-        System.out.println("---Email Detail---");
-        System.out.println("Email : "+pnbEmail.getEmail());
-        System.out.println("Password : "+pnbEmail.getPassword());
-        System.out.println("NIM : "+pnbEmail.getNIM());
-        System.out.println("---------------");
+    public void display(){
+        int index =1;
+        System.out.println("-----Problem Email-----");
+        for (PnbEmail email : problemEmail) {
+            System.out.println(index+". "+email.getEmail()+" "+email.getPassword()+" "+email.getAccess()+" "+email.getCapacity());
+            index++;
+        }
+        System.out.println("===========================================");
     }
 
     public int confirmEdit(int confirm){
@@ -67,5 +69,11 @@ public class ProblemEmailCRUD extends EmailCRUD{
             confirm = 1;
         }
         return confirm;
+    }
+    public boolean isEmailExist(int index){
+        if(index <= problemEmail.size()){
+            return true;
+        }
+        return false;
     }
 }

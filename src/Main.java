@@ -8,46 +8,45 @@ public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         PnbEmail email1 = new PnbEmail();
-        PnbEmail email2 = new PnbEmail();
         email1.setEmail("alok@pnb.id");
         email1.setPassword("alok123");
         email1.setNIM("2215354040");
-
-        email2.setEmail("kelly@pnb.id");
-        email2.setPassword("kelly123");
-        email2.setNIM("2215354050");
+        email1.setAccess("E-Lab Teknik Elektro");
+        email1.setCapacity(10);
         pnbEmailCRUD.pnbEmail.add(email1);
+
+        PnbEmail email2 = new PnbEmail("IWisnu@pnb.id", "wisnuwardana", "2215324010","E-Lab Teknik Elektro", 10);
         pnbEmailCRUD.addEmail(email2);
 
-        PnbEmail email3 = new PnbEmail("IWisnu@pnb.id", "wisnuwardana", "E-Lab Teknik Elektro", 10);
+        PnbEmail email3 = new PnbEmail("NiDiah@pnb.id", "diah123", "2215324010", "E-Lab Teknik Elektro", 10);
         pnbEmailCRUD.addEmail(email3);
 
-        pnbEmailDisplay();
+        pnbEmailCRUD.display();
 
         int answer;
 
-            System.out.println("--- EMAIL ADMINISTRATION PNB ---");
-            System.out.println("--------------------------------");
+        System.out.println("--- EMAIL ADMINISTRATION PNB ---");
+        System.out.println("--------------------------------");
         do{
             System.out.println("Pilih menu : ");
-            System.out.println("1.Check email list\t\t| 4.Ads to problem email\n2.Generate new email\t| 5.Problem email\n3.Delete email");
+            System.out.println("1.Check email list\t\t| 4.Ads to problem email\n2.Generate new email\t| 5.Problem email\n3.Delete email\t\t\t| 6.Exit");
             answer = input.nextInt();
 
             switch (answer){
                 case 1 :
-                    pnbEmailDisplay();
+                    pnbEmailCRUD.display();
                     break;
                 case 2 :
-                    getUserData();
+                    pnbEmailCRUD.display();
                     break;
                 case 3 :
-                    pnbEmailDisplay();
+                    pnbEmailCRUD.display();
                     System.out.println("Masukan nomor email yang ingin dihapus :");
                     int index = input.nextInt();
                     pnbEmailCRUD.deleteEmail(index-1);
                     break;
                 case 4 :
-                    pnbEmailDisplay();
+                    pnbEmailCRUD.display();
                     System.out.println("Masukan nomor email yang ingin dipindahkan :");
                     index = input.nextInt();
                     sendEmail(index-1);
@@ -56,27 +55,10 @@ public class Main {
                     problemEmailMenu();
                     break;
                 default :
-                    System.out.println("YTTA");
-
+                    System.out.println("Input angka 1-6");
             }
         }while (answer != 6);
 
-    }
-    public static void pnbEmailDisplay(){
-        int index =1;
-        System.out.println("-----All Email-----");
-        for (PnbEmail email : pnbEmailCRUD.pnbEmail) {
-            System.out.println(index+". "+email.getEmail()+" "+email.getPassword()+" "+email.getAccess()+" "+email.getCapacity());
-            index++;
-        }
-    }
-    public static void problemEmailDisplay(){
-        int index =1;
-        System.out.println("-----Problem Email-----");
-        for (PnbEmail email : problemEmailCRUD.problemEmail) {
-            System.out.println(index+". "+email.getEmail()+" "+email.getPassword()+" "+email.getAccess()+" "+email.getCapacity());
-            index++;
-        }
     }
     public static void sendEmail(int index){
         PnbEmail selectEmail = pnbEmailCRUD.pnbEmail.get(index);
@@ -95,15 +77,15 @@ public class Main {
         int answer;
         int index;
         do{
-            System.out.println("1.Check problem email list \n2.Edit email \n3.Delete email\n4.Send back email");
+            System.out.println("1.Check problem email list \n2.Edit email \n3.Delete email\n4.Send back email\n5.Exit");
             answer = input.nextInt();
 
             switch (answer){
                 case 1 :
-                    problemEmailDisplay();
+                    problemEmailCRUD.display();
                     break;
                 case 2 :
-                    problemEmailDisplay();
+                    problemEmailCRUD.display();
                     System.out.println("masukan no email yang ingin di edit :");
                     index = input.nextInt();
                     PnbEmail email = problemEmailCRUD.problemEmail.get(index-1);
@@ -114,13 +96,13 @@ public class Main {
                     }
                     break;
                 case 3 :
-                    problemEmailDisplay();
+                    problemEmailCRUD.display();
                     System.out.println("masukan no email yang ingin di edihapus :");
                     index = input.nextInt();
                     problemEmailCRUD.deleteEmail(index-1);
                     break;
                 case 4 :
-                    problemEmailDisplay();
+                    problemEmailCRUD.display();
                     System.out.println("masukan no email yang ingin di pindahkan : :");
                     index = input.nextInt();
                     sendBack(index-1);
@@ -214,11 +196,13 @@ public class Main {
         for (PnbEmail email : pnbEmailCRUD.pnbEmail){
             if(email.getNIM().equals(NIM)){
                 flag = true;
+                break;
             }
         }
         for (PnbEmail email : problemEmailCRUD.problemEmail){
             if(email.getNIM().equals(NIM)){
                 flag = true;
+                break;
             }
         }
         return flag;

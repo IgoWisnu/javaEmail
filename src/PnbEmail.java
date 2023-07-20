@@ -20,9 +20,10 @@ public class PnbEmail extends Email{
     PnbEmail(){
 
     }
-    PnbEmail(String email, String password, String access, int capacity){
+    PnbEmail(String email, String password, String NIM, String access, int capacity){
         this.setEmail(email);
         this.setPassword(password);
+        this.setNIM(NIM);
         this.setAccess(access);
         this.setCapacity(capacity);
     }

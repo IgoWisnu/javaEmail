@@ -77,12 +77,6 @@ public class PnbEmailGenerator implements EmailGenerator{
                 return 5;
         }
     }
-
-    @Override
-    public void setAlternateEmail(String email) {
-
-    }
-
     public String randomPassword(int lenght){
         String passwordChar = "";
         String passwordSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#%";
