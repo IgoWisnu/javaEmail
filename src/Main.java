@@ -16,11 +16,12 @@ public class Main {
         pnbEmailCRUD.pnbEmail.add(email1);
 
         PnbEmail email2 = new PnbEmail("IWisnu@pnb.id", "wisnuwardana", "2215324010","E-Lab Teknik Elektro", 10);
+        email2.setEmail(email2.getEmail().toLowerCase());
         pnbEmailCRUD.addEmail(email2);
 
         PnbEmail email3 = new PnbEmail("NiDiah@pnb.id", "diah123", "2215324010", "E-Lab Teknik Elektro", 10);
         pnbEmailCRUD.addEmail(email3);
-
+        email3.setEmail(email3.getEmail().toLowerCase());
         pnbEmailCRUD.display();
 
         int answer;
@@ -37,13 +38,18 @@ public class Main {
                     pnbEmailCRUD.display();
                     break;
                 case 2 :
-                    pnbEmailCRUD.display();
+                    getUserData();
                     break;
                 case 3 :
                     pnbEmailCRUD.display();
                     System.out.println("Masukan nomor email yang ingin dihapus :");
                     int index = input.nextInt();
-                    pnbEmailCRUD.deleteEmail(index-1);
+                    if(pnbEmailCRUD.isEmailExist(index-1) == true){
+                        pnbEmailCRUD.deleteEmail(index-1);
+                    }
+                    else {
+                        System.out.println("Index tidak ditemukan");
+                    }
                     break;
                 case 4 :
                     pnbEmailCRUD.display();
@@ -140,6 +146,7 @@ public class Main {
         System.out.println("--- GENERATE EMAIL ---");
         System.out.println("Silahkan masukan nama lengkap :");
         String namalengkap = input.nextLine();
+        namalengkap = namalengkap.toLowerCase();
 
         //NIM check
         boolean flag;
