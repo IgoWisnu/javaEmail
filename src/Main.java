@@ -146,6 +146,7 @@ public class Main {
         System.out.println("--- GENERATE EMAIL ---");
         System.out.println("Silahkan masukan nama lengkap :");
         String namalengkap = input.nextLine();
+        //lowercase input
         namalengkap = namalengkap.toLowerCase();
 
         //NIM check
